@@ -1,0 +1,137 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 180 15% 4%;
+    --foreground: 160 20% 96%;
+    --card: 180 18% 7%;
+    --card-foreground: 160 20% 96%;
+    --popover: 180 18% 7%;
+    --popover-foreground: 160 20% 96%;
+    --primary: 152 72% 44%;
+    --primary-foreground: 180 20% 4%;
+    --secondary: 180 15% 12%;
+    --secondary-foreground: 160 20% 96%;
+    --muted: 180 15% 13%;
+    --muted-foreground: 170 10% 55%;
+    --accent: 152 60% 40%;
+    --accent-foreground: 160 20% 96%;
+    --destructive: 0 72% 52%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 180 15% 16%;
+    --input: 180 15% 16%;
+    --ring: 152 72% 44%;
+    --chart-1: 152 72% 44%;
+    --chart-2: 0 72% 52%;
+    --chart-3: 30 80% 55%;
+    --chart-4: 197 60% 50%;
+    --chart-5: 43 80% 60%;
+    --radius: 0.65rem;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  html {
+    color-scheme: dark;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+}
+
+/* Leaflet overrides for dark theme */
+.leaflet-container {
+  background: hsl(180 15% 9%) !important;
+  font-family: inherit;
+}
+.leaflet-control-zoom a {
+  background: hsl(180 18% 12%) !important;
+  color: hsl(160 20% 96%) !important;
+  border-color: hsl(180 15% 20%) !important;
+}
+.leaflet-control-zoom a:hover {
+  background: hsl(180 18% 18%) !important;
+}
+.leaflet-popup-content-wrapper,
+.leaflet-popup-tip {
+  background: hsl(180 18% 12%) !important;
+  color: hsl(160 20% 96%) !important;
+  border: 1px solid hsl(180 15% 22%);
+}
+.leaflet-bar {
+  border: 1px solid hsl(180 15% 20%) !important;
+}
+.leaflet-control-attribution {
+  background: hsl(180 18% 8%) !important;
+  color: hsl(170 10% 50%) !important;
+}
+.leaflet-control-attribution a {
+  color: hsl(152 60% 55%) !important;
+}
+
+/* Glow utilities */
+.glow-primary {
+  box-shadow: 0 0 0 1px hsl(152 72% 44% / 0.2), 0 8px 40px -12px hsl(152 72% 44% / 0.45);
+}
+.text-glow {
+  text-shadow: 0 0 30px hsl(152 72% 44% / 0.5);
+}
+.grid-bg {
+  background-image:
+    linear-gradient(hsl(180 15% 14% / 0.5) 1px, transparent 1px),
+    linear-gradient(90deg, hsl(180 15% 14% / 0.5) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+@keyframes pulse-ring {
+  0% { transform: scale(0.8); opacity: 0.8; }
+  100% { transform: scale(2.4); opacity: 0; }
+}
+@keyframes shimmer {
+  0% { background-position: -1000px 0; }
+  100% { background-position: 1000px 0; }
+}
+@keyframes fade-in-up {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes route-draw {
+  from { stroke-dashoffset: 1000; }
+  to { stroke-dashoffset: 0; }
+}
+
+.animate-float { animation: float 5s ease-in-out infinite; }
+.animate-fade-in-up { animation: fade-in-up 0.6s ease-out forwards; }
+.shimmer {
+  background: linear-gradient(90deg, hsl(180 15% 10%) 0%, hsl(180 15% 16%) 50%, hsl(180 15% 10%) 100%);
+  background-size: 1000px 100%;
+  animation: shimmer 2s infinite;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: hsl(180 15% 6%); }
+::-webkit-scrollbar-thumb { background: hsl(180 15% 18%); border-radius: 6px; }
+::-webkit-scrollbar-thumb:hover { background: hsl(180 15% 24%); }
+
+/* Leaflet custom markers */
+.sw-marker { background: transparent !important; border: none !important; }
+.sw-marker-dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 2px solid hsl(180 18% 12%);
+}
+.sw-route-label { background: transparent !important; border: none !important; }
+.sw-route-label > div { transform: translateY(-24px); }
+
